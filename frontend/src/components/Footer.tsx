@@ -1,11 +1,25 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail, Phone, Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, Linkedin, Twitter, Mail, Phone, Heart, ArrowUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="bg-slate-950 text-white relative overflow-hidden rounded-t-[32px] mt-12 font-sans border-t border-white/5">
@@ -27,24 +41,12 @@ export default function Footer() {
         className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(79,70,229,0.25),transparent_60%)]"
       />
 
-      {/* Tech Grid Overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.015] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
-          backgroundSize: '32px 32px'
-        }}
-      ></div>
-
-      {/* Noise Texture Overlay */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
-
       <div className="container mx-auto px-6 max-w-7xl pt-12 pb-6 relative z-10">
         
-        {/* 🧱 Main Structure: High-Density Side-by-Side Grid */}
+        {/* 🧱 Main Structure */}
         <div className="grid md:grid-cols-12 gap-8 mb-12">
           
-          {/* 🔹 LEFT: Brand (Condensed) */}
+          {/* 🔹 LEFT: Brand */}
           <div className="md:col-span-5 space-y-5 flex flex-col items-center md:items-start text-center md:text-left">
             <Link href="/" className="inline-flex items-center gap-3 group">
                <div className="relative w-11 h-11 rounded-full flex items-center justify-center bg-white/5 border border-white/10 group-hover:border-indigo-500/50 transition-all duration-300">
@@ -67,7 +69,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 🔹 CENTER: Navigate (Inline List) */}
+          {/* 🔹 CENTER: Navigate */}
           <div className="md:col-span-3 space-y-4 flex flex-col items-center md:items-start">
             <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-indigo-400">Navigate</h4>
             <nav className="flex flex-wrap md:flex-col gap-x-6 gap-y-2.5 justify-center md:justify-start">
@@ -80,7 +82,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* 🔹 RIGHT: Contact (Tight Rows) */}
+          {/* 🔹 RIGHT: Contact */}
           <div className="md:col-span-4 space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-indigo-400">Contact</h4>
              <div className="space-y-3 w-full md:w-auto">
@@ -98,37 +100,41 @@ export default function Footer() {
                 </a>
              </div>
           </div>
-
         </div>
 
-        {/* 🧾 BOTTOM BAR: Single Tight Row */}
+        {/* 🧾 BOTTOM BAR */}
         <div className="relative pt-6">
-           <motion.div 
-             initial={{ scaleX: 0 }}
-             whileInView={{ scaleX: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 1, ease: "easeInOut" }}
-             className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent origin-center"
-           ></motion.div>
+           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent origin-center"></div>
            
            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-slate-500 font-medium py-2">
-             
              <p className="order-2 md:order-1 tracking-tight">
                &copy; {currentYear} Aman Vishwakarma
              </p>
-
-             <p className="order-1 md:order-2 flex items-center gap-1.5 bg-white/5 border border-white/5 px-4 py-1 rounded-full backdrop-blur-sm group transition-colors">
-                Built with <Heart className="w-3 h-3 text-rose-500 fill-current animate-pulse group-hover:scale-110 transition-transform" /> using Next.js
+             <p className="order-1 md:order-2 flex items-center gap-1.5 bg-white/5 border border-white/5 px-4 py-1 rounded-full backdrop-blur-sm group">
+                Built with <Heart className="w-3 h-3 text-rose-500 fill-current animate-pulse" /> using Next.js
              </p>
-             
              <div className="order-3 flex gap-6">
                 <Link href="#" className="hover:text-indigo-400 transition-colors uppercase tracking-[0.1em] text-[10px]">Privacy Policy</Link>
                 <Link href="#" className="hover:text-indigo-400 transition-colors uppercase tracking-[0.1em] text-[10px]">Terms of Service</Link>
              </div>
            </div>
         </div>
-
       </div>
+
+      {/* Back to Top Floating Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 20 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-50 p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-2xl transition-colors group"
+          >
+            <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </footer>
   );
 }
