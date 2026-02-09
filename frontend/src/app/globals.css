@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@theme {
+    --font-display: "Inter", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+}
+
+:root {
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --accent-indigo: #4f46e5;
+    --accent-cyan: #22d3ee;
+    --accent-purple: #a855f7;
+}
+
+body {
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #4f46e5, #22d3ee, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Utilities from previous setup or user request */
+@layer utilities {
+    .glass-card {
+        @apply bg-white/60 backdrop-blur-xl border border-indigo-100 shadow-lg hover:shadow-xl transition;
+    }
+}

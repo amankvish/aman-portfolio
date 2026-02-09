@@ -1,269 +1,92 @@
 "use client";
 
-import styles from "../styles/Skills.module.css";
+import { motion } from "framer-motion";
+import { Server, Layout, Brain, Cloud, Database, ExternalLink, GitBranch, Terminal } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Section from "@/components/Section";
+
+const SKILLS = [
+  {
+    category: "Core Development",
+    icon: Terminal,
+    color: "bg-blue-100 text-blue-700 border-blue-200",
+    skills: ["Python", "JavaScript", "Django", "React", "Next.js", "Node.js", "Express"],
+  },
+  {
+    category: "Automation & AI",
+    icon: Brain,
+    color: "bg-purple-100 text-purple-700 border-purple-200",
+    skills: ["Zoho Flow", "Zoho CRM", "Zapier", "Make", "Celery", "OpenAI API", "Power Automate"],
+  },
+  {
+    category: "APIs & Integrations",
+    icon: Server,
+    color: "bg-emerald-100 text-emerald-700 border-emerald-200",
+    skills: ["REST APIs", "WhatsApp API", "Google Apps Script", "CRM Integrations"],
+  },
+  {
+    category: "Cloud & DevOps",
+    icon: Cloud,
+    color: "bg-orange-100 text-orange-700 border-orange-200",
+    skills: ["AWS", "Google Cloud", "Docker", "Git", "CI/CD", "Firebase"],
+  },
+  {
+    category: "Databases",
+    icon: Database,
+    color: "bg-cyan-100 text-cyan-700 border-cyan-200",
+    skills: ["PostgreSQL", "MongoDB", "SQL", "Redis"],
+  },
+  {
+    category: "Tools & Soft Skills",
+    icon: Layout,
+    color: "bg-pink-100 text-pink-700 border-pink-200",
+    skills: ["Git/GitHub", "Jira", "Postman", "Agile", "Problem Solving", "Team Leadership"],
+  }
+];
 
 export default function Skills() {
   return (
-    <main className={styles.container}>
-      {/* Background Elements */}
-      <div className={styles.backgroundElements}>
-        <div className={styles.gradientBlob}></div>
-        <div className={styles.circuitPattern}></div>
-        <div className={styles.floatingDots}></div>
+    <Section id="skills" variant="skills">
+      <div className="text-center mb-16 space-y-4">
+        <div className="inline-block px-3 py-1 bg-white/50 border border-white/60 rounded-full text-xs font-semibold uppercase tracking-wider text-indigo-900 shadow-sm backdrop-blur-sm">
+           Stack & Tools
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold font-heading text-indigo-900">
+          Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600">Proficiency</span>
+        </h2>
+        <p className="text-slate-700 max-w-xl mx-auto text-lg leading-relaxed">
+           A versatile toolkit combining powerful backend logic with modern frontend frameworks and intelligent automation.
+        </p>
       </div>
 
-      {/* ===========================
-          SKILLS SECTION
-      ============================ */}
-      <section id="skills" className={styles.skillsSection}>
-        <div className={styles.sectionContainer}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionBadge}>
-              <span className={styles.badgeIcon}>⚡</span>
-              Technical Stack
-            </div>
-            <h2 className={styles.sectionTitle}>
-              Skills & <span className={styles.gradientText}>Technologies</span>
-            </h2>
-          </div>
-
-          <div className={styles.skillsCompact}>
-            {/* Core Development */}
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHeader}>
-                <div className={styles.groupIcon}>🚀</div>
-                <h3>Core Development</h3>
-              </div>
-              <div className={styles.skillPills}>
-                <span className={styles.skillPill}>Python</span>
-                <span className={styles.skillPill}>JavaScript</span>
-                <span className={styles.skillPill}>Django</span>
-                <span className={styles.skillPill}>React</span>
-                <span className={styles.skillPill}>Next.js</span>
-                <span className={styles.skillPill}>Node.js</span>
-                <span className={styles.skillPill}>Express</span>
-              </div>
-            </div>
-
-            {/* Automation & AI */}
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHeader}>
-                <div className={styles.groupIcon}>🤖</div>
-                <h3>Automation & AI</h3>
-              </div>
-              <div className={styles.skillPills}>
-                <span className={styles.skillPill}>Zoho Flow</span>
-                <span className={styles.skillPill}>Zoho CRM</span>
-                <span className={styles.skillPill}>Zapier</span>
-                <span className={styles.skillPill}>Make</span>
-                <span className={styles.skillPill}>Celery</span>
-                <span className={styles.skillPill}>OpenAI API</span>
-                <span className={styles.skillPill}>Power Automate</span>
-              </div>
-            </div>
-
-            {/* APIs & Integration */}
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHeader}>
-                <div className={styles.groupIcon}>🔌</div>
-                <h3>APIs & Integration</h3>
-              </div>
-              <div className={styles.skillPills}>
-                <span className={styles.skillPill}>REST APIs</span>
-                <span className={styles.skillPill}>WhatsApp API</span>
-                <span className={styles.skillPill}>Google Apps Script</span>
-                <span className={styles.skillPill}>CRM Integration</span>
-              </div>
-            </div>
-
-            {/* Cloud & DevOps */}
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHeader}>
-                <div className={styles.groupIcon}>☁️</div>
-                <h3>Cloud & DevOps</h3>
-              </div>
-              <div className={styles.skillPills}>
-                <span className={styles.skillPill}>AWS</span>
-                <span className={styles.skillPill}>Google Cloud</span>
-                <span className={styles.skillPill}>Docker</span>
-                <span className={styles.skillPill}>Git</span>
-                <span className={styles.skillPill}>CI/CD</span>
-                <span className={styles.skillPill}>Firebase</span>
-              </div>
-            </div>
-
-            {/* Databases */}
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHeader}>
-                <div className={styles.groupIcon}>🗄️</div>
-                <h3>Databases</h3>
-              </div>
-              <div className={styles.skillPills}>
-                <span className={styles.skillPill}>PostgreSQL</span>
-                <span className={styles.skillPill}>MongoDB</span>
-                <span className={styles.skillPill}>SQL</span>
-              </div>
-            </div>
-
-            {/* Testing & RPA */}
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHeader}>
-                <div className={styles.groupIcon}>⚙️</div>
-                <h3>Tools & Platforms</h3>
-              </div>
-              <div className={styles.skillPills}>
-                <span className={styles.skillPill}>GitHub</span>
-                <span className={styles.skillPill}>Postman</span>
-                <span className={styles.skillPill}>VS Code</span>
-                <span className={styles.skillPill}>Anaconda</span>
-                <span className={styles.skillPill}>WordPress</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Soft Skills */}
-          <div className={styles.softSkillsCompact}>
-            <div className={styles.softSkillsHeader}>
-              <span className={styles.softSkillsIcon}>💫</span>
-              <h3>Soft Skills</h3>
-            </div>
-            <div className={styles.softSkillsGrid}>
-              <div className={styles.softSkill}>
-                <div className={styles.skillDot}></div>Problem Solving
-              </div>
-              <div className={styles.softSkill}>
-                <div className={styles.skillDot}></div>Communication
-              </div>
-              <div className={styles.softSkill}>
-                <div className={styles.skillDot}></div>Collaboration
-              </div>
-              <div className={styles.softSkill}>
-                <div className={styles.skillDot}></div>Process Optimization
-              </div>
-              <div className={styles.softSkill}>
-                <div className={styles.skillDot}></div>Initiative
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===========================
-          EXPERIENCE SECTION (UPDATED)
-      ============================ */}
-      <section id="experience" className={styles.experienceSection}>
-        <div className={styles.sectionContainer}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionBadge}>
-              <span className={styles.badgeIcon}>🎯</span>
-              Work Experience
-            </div>
-            <h2 className={styles.sectionTitle}>
-              Professional <span className={styles.gradientText}>Journey</span>
-            </h2>
-          </div>
-
-          <div className={styles.experienceCompact}>
-            <div className={styles.roleCard}>
-              <div className={styles.roleHeader}>
-                <div className={styles.roleMain}>
-                  <h3 className={styles.roleTitle}>
-                    Associate L1 – Automation Engineer / Python Developer
-                  </h3>
-                  <p className={styles.company}>Astro Arun Pandit Pvt. Ltd.</p>
-                  <div className={styles.roleMeta}>
-                    <span className={styles.metaItem}>May 2024 – Present</span>
-                    <span className={styles.metaItem}>📍 Onsite</span>
-                    <span className={styles.metaItem}>Full-time</span>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+         {SKILLS.map((cat, idx) => (
+            <motion.div
+              key={cat.category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-white/60 backdrop-blur-md rounded-3xl p-8 border border-white/50 shadow-sm hover:shadow-xl hover:border-white/80 transition-all flex flex-col group"
+            >
+               <div className="flex items-center gap-4 mb-6">
+                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform", cat.color)}>
+                     <cat.icon className="w-6 h-6" />
                   </div>
-                </div>
-                <div className={styles.companyType}>
-                  <span>🪐 Astrology Tech</span>
-                </div>
-              </div>
+                  <h3 className="text-xl font-bold text-slate-800">{cat.category}</h3>
+               </div>
 
-              {/* Achievements */}
-              <div className={styles.achievementsGrid}>
-                <div className={styles.achievement}>
-                  <div className={styles.achievementIcon}>⚡</div>
-                  <div className={styles.achievementContent}>
-                    <h4>Automation Engineering</h4>
-                    <p>
-                      Lead workflows using Zoho Checkout + Zoho Flow + CRM +
-                      WhatsApp API
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.achievement}>
-                  <div className={styles.achievementIcon}>🤖</div>
-                  <div className={styles.achievementContent}>
-                    <h4>Web Automation</h4>
-                    <p>
-                      Python & Selenium scripts for scraping, cleaning & syncing
-                      leads
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.achievement}>
-                  <div className={styles.achievementIcon}>⏱️</div>
-                  <div className={styles.achievementContent}>
-                    <h4>Async Pipelines</h4>
-                    <p>
-                      Celery-based background tasks, notifications & schedulers
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.achievement}>
-                  <div className={styles.achievementIcon}>📊</div>
-                  <div className={styles.achievementContent}>
-                    <h4>Data Automation</h4>
-                    <p>Zoho CRM → Google Sheets → Email API integrations</p>
-                  </div>
-                </div>
-
-                <div className={styles.achievement}>
-                  <div className={styles.achievementIcon}>💡</div>
-                  <div className={styles.achievementContent}>
-                    <h4>20+ Hours Saved</h4>
-                    <p>Internal tools using Google Apps Script</p>
-                  </div>
-                </div>
-
-                <div className={styles.achievement}>
-                  <div className={styles.achievementIcon}>🌐</div>
-                  <div className={styles.achievementContent}>
-                    <h4>Frontend Development</h4>
-                    <p>
-                      Next.js-based Occult Gurukul website – UI/UX + performance
-                      boost
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tech Stack */}
-              <div className={styles.techStack}>
-                <h4 className={styles.techStackTitle}>Tech Stack</h4>
-                <div className={styles.techTags}>
-                  <span className={styles.techTag}>Python</span>
-                  <span className={styles.techTag}>Django</span>
-                  <span className={styles.techTag}>Zoho CRM / Flow</span>
-                  <span className={styles.techTag}>Celery</span>
-                  <span className={styles.techTag}>OpenAI API</span>
-                  <span className={styles.techTag}>WhatsApp API</span>
-                  <span className={styles.techTag}>PostgreSQL</span>
-                  <span className={styles.techTag}>JavaScript</span>
-                  <span className={styles.techTag}>React</span>
-                  <span className={styles.techTag}>Next.js</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+               <div className="flex flex-wrap gap-2">
+                  {cat.skills.map(s => (
+                     <span key={s} className="bg-white/50 px-3 py-1.5 rounded-lg text-sm text-slate-700 font-medium border border-white/60 group-hover:border-white group-hover:bg-white transition-colors cursor-default">
+                        {s}
+                     </span>
+                  ))}
+               </div>
+            </motion.div>
+         ))}
+      </div>
+    </Section>
   );
 }

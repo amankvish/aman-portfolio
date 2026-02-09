@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { Poppins, Roboto_Mono } from "next/font/google";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-primary",
+  variable: "--font-body",
+  display: 'swap',
 });
 
-const robotoMono = Roboto_Mono({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-secondary",
+  variable: "--font-heading",
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Aman Vishwakarma | Software Developer",
-  description: "Portfolio of Aman Vishwakarma, Junior Software Developer",
+  title: "Aman Vishwakarma | Software Engineer & Automation Expert",
+  description: "Building Scalable Systems & Intelligent Automation. Portfolio of Aman Vishwakarma, a production-ready software engineer.",
 };
 
 export default function RootLayout({
@@ -27,34 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-      </head>
-      <body
-        className={`${poppins.variable} ${robotoMono.variable}`}
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          fontFamily: "var(--font-primary), sans-serif",
-        }}
-      >
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} scroll-smooth`}>
+      <body className="min-h-screen flex flex-col antialiased relative">
+        
         <Navbar />
 
-        <main
-          style={{
-            flex: 1,
-            minWidth: "320px",
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "1rem",
-            width: "100%",
-          }}
-        >
+        <main className="flex-1 w-full relative z-10">
           {children}
         </main>
 
